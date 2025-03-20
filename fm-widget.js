@@ -82,11 +82,13 @@ async function createWidget(size) {
 
 async function findRecords (fmConnection, numColumns) {
 
-	let datumStart = new Date();
-	datumStart.setDate(datumStart.getDate() - numColumns);
-	let datumStartText = datumStart.toISOString().substring(0,10);
+    let datumStart = new Date();
+    datumStart.setDate(datumStart.getDate() - numColumns);
+    let datumStartText = datumStart.toISOString().substring(0,10);
 
-    const url = fmConnection.database + "?filter=datum%20gt%20'" + datumStartText + "'&$orderby=datum%20desc&select=antal,datum";
+    const url = fmConnection.database + "?filter=datum%20gt%20'" + 
+	    datumStartText + 
+	    "'&$orderby=datum%20desc&select=antal,datum";
     const req = new Request(url);
     req.method = "GET";
     req.headers =
